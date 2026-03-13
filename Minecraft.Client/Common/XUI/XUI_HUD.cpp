@@ -186,7 +186,8 @@ HRESULT CXuiSceneHud::OnCustomMessage_TickScene()
 		if (pMinecraft->localplayers[m_iPad]->invulnerableTime < 10) blink = false;
 		int iHealth = pMinecraft->localplayers[m_iPad]->getHealth();
 		int iLastHealth = pMinecraft->localplayers[m_iPad]->lastHealth;
-		bool bHasPoison = pMinecraft->localplayers[m_iPad]->hasEffect(MobEffect::poison); 
+		bool bHasPoison = pMinecraft->localplayers[m_iPad]->hasEffect(MobEffect::poison);
+		bool isHardcore = pMinecraft->level != nullptr && pMinecraft->level->getLevelData()->isHardcore();
 		for (int icon = 0; icon < Player::MAX_HEALTH / 2; icon++)
 		{
 			if(blink)
@@ -196,11 +197,15 @@ HRESULT CXuiSceneHud::OnCustomMessage_TickScene()
 					// Full
 					if(bHasPoison)
 					{
-						m_healthIcon[icon].PlayVisualRange(L"FullPoisonFlash",nullptr,L"FullPoisonFlash");
+						m_healthIcon[icon].PlayVisualRange(
+							isHardcore ? L"FullPoisonFlashHardcore" : L"FullPoisonFlash", nullptr,
+							isHardcore ? L"FullPoisonFlashHardcore" : L"FullPoisonFlash");
 					}
 					else
 					{
-						m_healthIcon[icon].PlayVisualRange(L"FullFlash",nullptr,L"FullFlash");
+						m_healthIcon[icon].PlayVisualRange(
+							isHardcore ? L"FullFlashHardcore" : L"FullFlash", nullptr,
+							isHardcore ? L"FullFlashHardcore" : L"FullFlash");
 					}
 				}
 				else if (icon * 2 + 1 == iLastHealth || icon * 2 + 1 == iHealth)
@@ -208,17 +213,23 @@ HRESULT CXuiSceneHud::OnCustomMessage_TickScene()
 					// Half
 					if(bHasPoison)
 					{
-						m_healthIcon[icon].PlayVisualRange(L"HalfPoisonFlash",nullptr,L"HalfPoisonFlash");
+						m_healthIcon[icon].PlayVisualRange(
+							isHardcore ? L"HalfPoisonFlashHardcore" : L"HalfPoisonFlash", nullptr,
+							isHardcore ? L"HalfPoisonFlashHardcore" : L"HalfPoisonFlash");
 					}
 					else
 					{
-						m_healthIcon[icon].PlayVisualRange(L"HalfFlash",nullptr,L"HalfFlash");
+						m_healthIcon[icon].PlayVisualRange(
+							isHardcore ? L"HalfFlashHardcore" : L"HalfFlash", nullptr,
+							isHardcore ? L"HalfFlashHardcore" : L"HalfFlash");
 					}
 				}
 				else
 				{
 					// Empty
-					m_healthIcon[icon].PlayVisualRange(L"NormalFlash",nullptr,L"NormalFlash");
+					m_healthIcon[icon].PlayVisualRange(
+						isHardcore ? L"NormalFlashHardcore" : L"NormalFlash", nullptr,
+						isHardcore ? L"NormalFlashHardcore" : L"NormalFlash");
 				}
 			}
 			else
@@ -228,11 +239,15 @@ HRESULT CXuiSceneHud::OnCustomMessage_TickScene()
 					// Full
 					if(bHasPoison)
 					{
-						m_healthIcon[icon].PlayVisualRange(L"FullPoison",nullptr,L"FullPoison");
+						m_healthIcon[icon].PlayVisualRange(
+							isHardcore ? L"FullPoisonHardcore" : L"FullPoison", nullptr,
+							isHardcore ? L"FullPoisonHardcore" : L"FullPoison");
 					}
 					else
 					{
-						m_healthIcon[icon].PlayVisualRange(L"Full",nullptr,L"Full");
+						m_healthIcon[icon].PlayVisualRange(
+							isHardcore ? L"FullHardcore" : L"Full", nullptr,
+							isHardcore ? L"FullHardcore" : L"Full");
 					}
 				}
 				else if (icon * 2 + 1 == iHealth)
@@ -240,17 +255,23 @@ HRESULT CXuiSceneHud::OnCustomMessage_TickScene()
 					// Half
 					if(bHasPoison)
 					{
-						m_healthIcon[icon].PlayVisualRange(L"HalfPoison",nullptr,L"HalfPoison");
+						m_healthIcon[icon].PlayVisualRange(
+							isHardcore ? L"HalfPoisonHardcore" : L"HalfPoison", nullptr,
+							isHardcore ? L"HalfPoisonHardcore" : L"HalfPoison");
 					}
 					else
 					{
-						m_healthIcon[icon].PlayVisualRange(L"Half",nullptr,L"Half");
+						m_healthIcon[icon].PlayVisualRange(
+							isHardcore ? L"HalfHardcore" : L"Half", nullptr,
+							isHardcore ? L"HalfHardcore" : L"Half");
 					}
 				}
 				else
 				{
 					// Empty
-					m_healthIcon[icon].PlayVisualRange(L"Normal",nullptr,L"Normal");
+					m_healthIcon[icon].PlayVisualRange(
+						isHardcore ? L"NormalHardcore" : L"Normal", nullptr,
+						isHardcore ? L"NormalHardcore" : L"Normal");
 				}
 			}
 
