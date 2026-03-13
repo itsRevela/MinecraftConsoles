@@ -9,6 +9,14 @@ If you have any questions regarding this fork, this is my Fluxer server (similar
 
 ![Tutorial World](.github/TutorialWorld.png)
 
+## Latest:
+
+Proper implementation of Hardcore Mode in LCE!
+- difficulty slider included in create world menu
+- difficulty slider forces "Difficulty: Hardcore" on world load
+- singleplayer: host death, force no respawn, on exit deletes world
+- multiplayer: host death = world delete upon exit --- joiner death = only exit available, persists upon rejoin (no respawn option)
+
 ## Introduction
 
 This project contains the source code of Minecraft Legacy Console Edition v1.6.0560.0 (TU19) with some fixes and improvements applied.
