@@ -7,7 +7,7 @@ If you have any questions regarding this fork, this is my Fluxer server (similar
   </a>
 </p>
 
-![Tutorial World](.github/TutorialWorld.png)
+![Tutorial World](.github/hardcore-preview.png)
 
 ## Latest:
 
